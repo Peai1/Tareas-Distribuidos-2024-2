@@ -1,0 +1,15 @@
+FROM golang:1.22.2
+
+WORKDIR /Tarea2
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY primary_node/primary_node.go ./primary_node.go
+COPY protofiles/ protofiles/
+COPY INPUT.txt ./INPUT.txt
+
+RUN go build -o primary_node primary_node.go
+
+CMD ["bash", "-c", "./primary_node; exec /bin/bash"]

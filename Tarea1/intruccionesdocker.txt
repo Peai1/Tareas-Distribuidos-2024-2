@@ -1,0 +1,12 @@
+Instrucciones
+Para ejecutar la tarea correctamente, ejecutar en el siguiente orden (en directorio Tarea1) ademas de que deben ser ejecutadas en las maquinas correctas dado que estan seteadas con la ip de sus respectivas maquinas, esto se detallara a continuacion:
+
+Máquina 017 (Caravanas):-sudo make docker-caravanas, se ocupa la ip "dist017.inf.santiago.usm.cl" para levantar caravanas en esta maquina.
+
+Máquina 018 (Logística):-sudo make docker-logistica, se ocupa la ip "dist018.inf.santiago.usm.cl" para levantar logistica en esta maquina.
+
+Máquina 019 (Finanzas):-sudo make docker-finanzas
+
+Máquina 020 (Clientes):-sudo make docker-clientes
+
+El servidor logistica es el que manda todo y comunica los procesos de cada servidor.

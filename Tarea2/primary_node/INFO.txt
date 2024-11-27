@@ -1,0 +1,6 @@
+1,1,Gomamon,Sacrificado
+2,2,Palmon,Sacrificado
+3,1,Gomamon,Sacrificado
+4,2,Tentomon,No Sacrificado
+5,1,Gabumon,Sacrificado
+6,1,Gatomon,Sacrificado

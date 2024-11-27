@@ -1,0 +1,12 @@
+FROM golang:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod download
+
+RUN go build -o supervisor1 ./Supervisores/MonotonicWrites/main.go
+
+# Define el comando para ejecutar la aplicación
+CMD ["./supervisor1", "dist020.inf.santiago.usm.cl:4000", "dist017.inf.santiago.usm.cl:5000", "dist018.inf.santiago.usm.cl:5001", "dist019.inf.santiago.usm.cl:5002"]

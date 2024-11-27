@@ -1,0 +1,9 @@
+version: "3"
+services:
+  readyourwrites:
+    build:
+      context: ../../
+      dockerfile: ./Supervisores/ReadYourWrites/Dockerfile
+    tty: true
+    ports:
+      - "6001:6001"

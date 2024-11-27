@@ -1,0 +1,8 @@
+FROM golang:latest
+
+WORKDIR /app
+
+COPY . .
+RUN go mod download
+
+CMD ["go", "run", "Servidores/main.go", "Servidor1", ":5000", "dist017.inf.santiago.usm.cl:5000", "dist018.inf.santiago.usm.cl:5001", "dist019.inf.santiago.usm.cl:5002"]

@@ -1,0 +1,12 @@
+11,
+Ostronitas,Puesto A,Excalibur,Antitoxinas,150
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Prioritario,Puesto B,Rhino,Municiones,300
+Normal,Puesto C,Nova,Suministros,100
+Normal,Puesto C,Nova,Suministros,100
+Normal,Puesto C,Nova,Suministros,100

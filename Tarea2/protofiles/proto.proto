@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package protofiles;
+
+option go_package = "Tarea2/protofiles";
+
+service ServicioRegionales {
+  rpc EnviarEstadoDigimon (DigimonRequest) returns (DigimonResponse);
+  rpc EnviarDataNode (DataNodeRequest) returns (DataNodeResponse);
+  rpc ConsultarEstadoDiaboromon (EstadoRequest) returns (EstadoResponse);
+  rpc ConsultarEstadoTerminacion (EstadoRequest) returns (EstadoResponse);
+}
+
+service ServicioDataNodes {
+  rpc GuardarData (DataNodeRequest) returns (DataNodeResponse);
+  rpc NotificarTerminacion (TerminarRequest) returns (TerminarResponse);
+  rpc ConsultarAtributos (DataNodeQuery) returns (DataNodeQueryResponse);
+}
+
+service ServicioTai {
+  rpc SolicitarDatos (TaiRequest) returns (TaiResponse);
+  rpc Atacar (TaiRequest) returns (TaiResponse);  // atacar diaboromon
+  rpc EnviarEstadoDiaboromon (EstadoRequest) returns (EstadoResponse);
+  rpc NotificarTerminacion (TerminarRequest) returns (TerminarResponse);
+
+  // Notificar estado de termino a diaboromon
+  rpc NotificarEstado (EstadoTaiRequest) returns (EstadoTaiResponse);
+}
+
+message DigimonRequest {
+  string mensaje_cifrado = 1;
+}
+
+message DigimonResponse {
+  string mensaje = 1;
+}
+
+message DataNodeRequest {
+  string id = 1;
+  string tipo_digimon = 3;
+}
+
+message DataNodeResponse {
+  string mensaje = 1;
+}
+
+
+message TaiRequest {
+  string accion = 1;
+}
+
+message TaiResponse {
+  double cantidad_datos = 1;
+  string mensaje = 2;
+}
+
+message EstadoRequest {}
+
+message EstadoResponse {
+  bool activo = 1;
+  string mensaje = 2;
+}
+
+message TerminarRequest {}
+
+message TerminarResponse {
+  string mensaje = 1;
+}
+
+// Mensajes para notificar el estado de tai a diaboromon
+message EstadoTaiRequest {}
+
+message EstadoTaiResponse {
+  string estado_juego = 1; // "ganado" o "perdido"
+  string mensaje = 2;
+}
+
+// 
+message DataNodeQuery {
+  repeated string ids = 1; // IDs de los Digimon sacrificados
+}
+
+message DataNodeQueryResponse {
+  repeated string atributos = 1; // Las líneas crudas del archivo
+}
+
+service ServicioDiaboromon {
+  rpc RecibirNotificacion (DiaboromonRequest) returns (DiaboromonResponse); // Nuevo método
+}
+
+message DiaboromonRequest {
+  int32 vida_restante = 1;
+  string mensaje = 2;
+}
+
+message DiaboromonResponse {
+  string mensaje = 1;
+}

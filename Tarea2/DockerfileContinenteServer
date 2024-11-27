@@ -1,0 +1,16 @@
+FROM golang:1.22.2
+
+WORKDIR /Tarea2
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY regionales/continente_server/continente_server.go ./continente_server.go
+COPY protofiles/ protofiles/
+COPY INPUT.txt ./INPUT.txt
+COPY DIGIDATA.txt ./DIGIDATA.txt
+
+RUN go build -o continente_server continente_server.go
+
+CMD ["./continente_server"]

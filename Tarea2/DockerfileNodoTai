@@ -1,0 +1,15 @@
+FROM golang:1.22.2
+
+WORKDIR /Tarea2
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY nodo_tai/nodo_tai.go ./nodo_tai.go
+COPY protofiles/ protofiles/
+COPY INPUT.txt ./INPUT.txt
+
+RUN go build -o nodo_tai nodo_tai.go
+
+CMD ["./nodo_tai"]

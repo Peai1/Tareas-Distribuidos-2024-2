@@ -1,0 +1,16 @@
+FROM golang:1.22.2
+
+WORKDIR /Tarea2
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY regionales/isla_file/isla_file.go ./isla_file.go
+COPY protofiles/ protofiles/
+COPY INPUT.txt ./INPUT.txt
+COPY DIGIDATA.txt ./DIGIDATA.txt
+
+RUN go build -o isla_file isla_file.go
+
+CMD ["./isla_file"]

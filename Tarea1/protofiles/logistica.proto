@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package protofiles;
+
+option go_package = "Tarea1/protofiles";
+
+// Servicio para manejar la interacción de los clientes con el sistema logístico
+service ClientService {
+    rpc SendPackage(PackageRequest) returns (PackageResponse);
+    rpc GetPackageStatus(StatusRequest) returns (StatusResponse);
+    rpc TerminarConexion(TerminarConexionMensaje) returns (TerminarConexionMensaje);
+}
+
+// Servicio para manejar la interacción de las caravanas con el sistema logístico
+service CaravanService {
+    rpc UpdateDelivery(DeliveryUpdateRequest) returns (DeliveryUpdateResponse);
+    rpc SendDeliveryInstructions(DeliveryInstructionRequest) returns (DeliveryInstructionResponse);
+}
+
+message TerminarConexionMensaje {
+    string mensaje = 1;
+}
+
+// Mensaje para enviar un nuevo paquete
+message PackageRequest {
+    string id_paquete = 1;
+    int64 timestamp = 2;
+    string tipo = 3;
+    string nombre = 4;
+    int32 valor = 5;
+    string escolta = 6;
+    string destino = 7;
+    string seguimiento = 8;
+}
+
+// Respuesta de la solicitud de envío de paquete
+message PackageResponse {
+    string seguimiento = 1;
+    string estado = 2;
+}
+
+// Solicitud de estado de paquete
+message StatusRequest {
+    string seguimiento = 1;
+}
+
+// Respuesta con el estado del paquete
+message StatusResponse {
+    string id_paquete = 1;
+    int64 timestamp = 2;
+    string tipo = 3;
+    string destino = 4;
+    int32 valor = 5;
+    string escolta = 6;
+    string estado = 7;
+    int32 intentos = 8;
+}
+
+// Solicitud para actualizar el estado de la entrega desde la caravana a logistica
+message DeliveryUpdateRequest {
+    string id_paquete = 1;
+    string seguimiento = 2;
+    string tipo = 3;
+    int32 valor = 4;
+    int32 intentos = 5;
+    string estado = 6;
+}
+
+message DeliveryUpdateResponse {
+    string mensaje = 1;
+}
+
+// Mensaje para enviar instrucciones de reparto a las caravanas
+message DeliveryInstructionRequest {
+    repeated PackageRequest packages = 1; 
+}
+
+// Nuevo mensaje para representar el resultado de una entrega
+message DeliveryResult {
+    string id_paquete = 1;
+    bool exito = 2;
+    int32 intentos = 3;
+    int32 valor = 4;
+}
+
+// Respuesta de las caravanas al recibir las instrucciones de reparto
+message DeliveryInstructionResponse {
+    repeated DeliveryResult results = 1; // Lista de resultados de las entregas
+}

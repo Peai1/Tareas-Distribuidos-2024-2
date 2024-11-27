@@ -1,0 +1,15 @@
+FROM golang:1.22.2
+
+WORKDIR /Tarea2
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY diaboromon/diaboromon.go ./diaboromon.go
+COPY protofiles/ protofiles/
+COPY INPUT.txt ./INPUT.txt
+
+RUN go build -o diaboromon diaboromon.go
+
+CMD ["./diaboromon"]
