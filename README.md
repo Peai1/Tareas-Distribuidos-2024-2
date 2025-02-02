@@ -1,1 +1,3 @@
-# grupo-05
+# Tareas Sistemas Distribuidos
+
+Lenguaje: Go
